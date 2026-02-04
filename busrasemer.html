@@ -8,7 +8,10 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 100px;
+            margin: 100px 0;
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
         }
         h1 {
             color: #ff69b4;
@@ -34,24 +37,35 @@
             background-color: #f44336;
             color: white;
             position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
 <body>
     <h1>Büsra & Semer</h1>
-    <div id="question">Suis-je la plus belle femme du monde ?</div>
+    <div id="question">Suis-je la plus belle ?</div>
     <button class="btn" id="yes" onclick="alert('Je le savais 😍')">Oui</button>
     <button class="btn" id="no">Non</button>
 
     <script>
         const noButton = document.getElementById('no');
 
-        // Fonction pour déplacer le bouton "Non" aléatoirement
-        noButton.addEventListener('mouseenter', () => {
+        function moveNoButton() {
             const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
             const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
             noButton.style.left = x + 'px';
             noButton.style.top = y + 'px';
+        }
+
+        // Pour ordinateur
+        noButton.addEventListener('mouseenter', moveNoButton);
+
+        // Pour mobile (toucher)
+        noButton.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Empêche le clic
+            moveNoButton();
         });
     </script>
 </body>
